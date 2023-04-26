@@ -21,6 +21,30 @@ elseif(${MBED_TOOLCHAIN} STREQUAL "GCC_ARM")
     set(STARTUP_FILE device/TOOLCHAIN_GCC_ARM/startup_gd32f450.S)
 endif()
 
+mbed_set_linker_script(mbed-gd32-f450zi ${CMAKE_CURRENT_SOURCE_DIR}/${LINKER_FILE})
+
+add_library(mbed-gd32-f450ig INTERFACE)
+
+target_include_directories(mbed-gd32-f450ig
+    INTERFACE
+        TARGET_GD32F450ig
+)
+
+target_sources(mbed-gd32-f450ig
+    INTERFACE
+        TARGET_GD32F450ig/PeripheralPins.c
+)
+
+if(${MBED_TOOLCHAIN} STREQUAL "ARM")
+    set(LINKER_FILE device/TOOLCHAIN_ARM_STD/gd32f450ig.sct)
+    set(STARTUP_FILE device/TOOLCHAIN_ARM_STD/startup_gd32f450.S)
+elseif(${MBED_TOOLCHAIN} STREQUAL "GCC_ARM")
+    set(LINKER_FILE device/TOOLCHAIN_GCC_ARM/GD32F450xG.ld)
+    set(STARTUP_FILE device/TOOLCHAIN_GCC_ARM/startup_gd32f450.S)
+endif()
+
+mbed_set_linker_script(mbed-gd32-f450ig ${CMAKE_CURRENT_SOURCE_DIR}/${LINKER_FILE})
+
 add_library(mbed-gd32f4xx INTERFACE)
 
 target_include_directories(mbed-gd32f4xx
@@ -85,7 +109,6 @@ target_sources(mbed-gd32f4xx
         ${STARTUP_FILE}
 )
 
-mbed_set_linker_script(mbed-gd32f4xx ${CMAKE_CURRENT_SOURCE_DIR}/${LINKER_FILE})
-
 target_link_libraries(mbed-gd32f4xx INTERFACE mbed-gigadevice)
 target_link_libraries(mbed-gd32-f450zi INTERFACE mbed-gd32f4xx)
+target_link_libraries(mbed-gd32-f450ig INTERFACE mbed-gd32f4xx)

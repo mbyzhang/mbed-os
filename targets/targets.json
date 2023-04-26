@@ -9116,6 +9116,57 @@
             "network-default-interface-type": "ETHERNET"
         }
     },
+    "GD32_F450IG": {
+        "inherits": [
+            "GD32_Target"
+        ],
+        "supported_form_factors": [
+            "ARDUINO"
+        ],
+        "core": "Cortex-M4F",
+        "components_add": [
+            "FLASHIAP"
+        ],
+        "extra_labels_add": [
+            "GD32F4XX",
+            "GD32F450IG",
+            "GD_EMAC",
+            "MBED_PSA_SRV"
+        ],
+        "features_add": [
+            "PSA"
+        ],
+        "device_has_add": [
+            "RTC",
+            "I2C",
+            "CAN",
+            "I2CSLAVE",
+            "ANALOGOUT",
+            "SPI",
+            "SPISLAVE",
+            "SERIAL_ASYNCH",
+            "SERIAL_FC",
+            "EMAC",
+            "FLASH",
+            "SLEEP",
+            "MPU",
+            "TRNG"
+        ],
+        "device_name": "GD32F450IG",
+        "detect_code": [
+            "1702"
+        ],
+        "macros_add": [
+            "GD32F450"
+        ],
+        "bootloader_supported": true,
+        "release_versions": [
+            "5"
+        ],
+        "overrides": {
+            "network-default-interface-type": "ETHERNET"
+        }
+    },
     "EP_AGORA": {
         "inherits": [
             "MCU_NRF52840"
